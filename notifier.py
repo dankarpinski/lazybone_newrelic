@@ -23,10 +23,9 @@ class Notifier:
         logging.debug(feed)
         if feed.feed:
             self.etag = feed.etag
-            if self.check_updated(feed.feed.updated_parsed):
-                entry = self.cycle_entries(feed.entries)
-                if entry:
-                    self.notification_receiver.notify(entry)
+            entry = self.cycle_entries(feed.entries)
+            if entry:
+                self.notification_receiver.notify(entry)
         else:
             logging.debug("Feed not updated. Etag unchanged. %s" % self.etag)
         return False
@@ -46,14 +45,6 @@ class Notifier:
             logging.debug("time diff: Less than %s" % self.check_period)
             return True
         logging.debug("time diff: Greater than %s" % self.check_period)
-        return False
-
-    def check_updated(self, update_time):
-        if self.update_time is None or time.mktime(update_time) > time.mktime(self.update_time):
-            logging.debug("update: %s" % time.strftime("%X %x", update_time))
-            self.update_time = update_time
-            return True
-        logging.debug("update: no update found. Latest from %s" % time.strftime("%X %x", update_time))
         return False
 
 
