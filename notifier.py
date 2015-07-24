@@ -1,6 +1,7 @@
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import feedparser
 import time
+import calendar
 import logging
 
 
@@ -38,8 +39,8 @@ class Notifier:
         return False
 
     def entry_in_period(self, date):
-        logging.debug("time diff: %s - %s - %s" % (time.time(), time.mktime(date), time.timezone))
-        time_diff = time.time() - time.mktime(date) - time.timezone
+        logging.debug("time diff: %s - %s" % (time.time(), calendar.timegm(date)))
+        time_diff = time.time() - calendar.timegm(date)
         logging.debug("time diff: %s" % time_diff)
         if time_diff < self.check_period:
             logging.debug("time diff: Less than %s" % self.check_period)
