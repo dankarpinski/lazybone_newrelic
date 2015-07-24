@@ -1,1 +1,10 @@
+pybluez:
+sudo apt-get install bluez
+sudo apt-get install python-bluez
+hcitool dev
+
+install dependencies:
+- ideally with virtualenv[https://virtualenv.pypa.io/en/latest/installation.html]
+- pip install -r requirements.txt
+
 pairing: sudo bluez-simple-agent hci0 30:14:10:27:17:25
