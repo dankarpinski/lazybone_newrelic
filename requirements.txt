@@ -1,0 +1,5 @@
+docopt==0.6.2
+feedparser==5.2.0
+lazybone==0.1.2
+pep8==1.6.2
+PyBluez==0.21
